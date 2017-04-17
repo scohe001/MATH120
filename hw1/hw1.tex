@@ -1,0 +1,100 @@
+\documentclass{article}
+
+\usepackage{fullpage,latexsym,picinpar,amsmath,amsfonts}
+
+\input{macros.tex}
+
+\begin{document}
+ 
+ 
+\centerline{\large \bf MATH120 Homework 1}
+\centerline{Stanley Cohen (scohe001)}
+ 
+\begin{problem}
+    Find $det(A)$ given the following: $A=
+    \begin{bmatrix}
+        1 & 0 & -1\\
+        2 & 4 & 0\\
+        0 & 0 & 7
+    \end{bmatrix}$\\
+
+    Taking the determinent in respect to the bottom row will yield: 
+    $$(0)det(\begin{bmatrix} 0 & -1 \\ 4 & 0 \end{bmatrix}) - 
+    (0)det(\begin{bmatrix} 1 & -1 \\ 2 & 0 \end{bmatrix}) + 
+    (7)det(\begin{bmatrix} 1 & 0 \\ 2 & 4 \end{bmatrix}) = $$
+
+    $$(0) - (0) + (7)(4) = 28$$
+\end{problem}
+    
+\begin{problem}
+    Let $A=
+    \begin{bmatrix}
+        1 & 2 & -1\\
+        3 & 4 & 2
+    \end{bmatrix},
+    \quad
+    B= \begin{bmatrix}
+        1\\
+        1\\
+        -1
+    \end{bmatrix}$
+    
+    \begin{description}
+    \item{(a)} Find $A^T$ and $B^T$.\\
+
+        $A^T = \begin{bmatrix} 1 & 3 \\ 2 & 4 \\ -1 & 2 \end{bmatrix}, \quad
+        B^T = \begin{bmatrix} 1 & 1 & -1 \end{bmatrix}$
+
+    \item{(b)} Find $AB$ and $BA$ (if the product is not defined, write \textit{NOT DEFINED})\\
+
+        $AB = \begin{bmatrix} (1, 2, -1) \cdot (1, 1, -1) \\ (3, 4, 2) \cdot (1, 1, -1) \end{bmatrix} = 
+            \begin{bmatrix} (1)(1) + (2)(1) + (-1)(-1) \\ (3)(1) + (4)(1) + (2)(-1) \end{bmatrix} = 
+            \begin{bmatrix} 4 \\ 5 \end{bmatrix}$\\
+
+        $BA$ is not defined as you are attempting to multiply a 3x1 matrix by a 2x3. 
+        The columns of $B$ (1) are not equal to the rows of $A$ (2).
+    \end{description}
+
+\end{problem}
+
+\begin{problem}
+    Let $L: {\rm I\!R}^2 \mapsto {\rm I\!R}^3$ be a linear transormation subject to:
+    $$
+    L(\begin{bmatrix} 1\\ 0 \end{bmatrix}) = 
+        \begin{bmatrix} 1\\ 2\\ 1 \end{bmatrix}
+    \quad\quad
+    L(\begin{bmatrix} 0\\ 1 \end{bmatrix}) = 
+        \begin{bmatrix} -1\\ 0\\ 0 \end{bmatrix}
+    $$
+    
+    \begin{description}
+
+    \item{(a)} Find the matrix representation of $L$ with respect to the standard bases
+                    of ${\rm I\!R}^2$ and ${\rm I\!R}^3$.\\
+
+        We know what the standard basis of ${\rm I\!R}^2$ maps to under L, so finding the 
+        matrix representation for the tranformation becomes trivial: $L(\vec{x}) = A\vec{x}$
+        where $A=
+        \begin{bmatrix} 1 & -1 \\ 2 & 0 \\ 1 & 0 \end{bmatrix}$
+    
+    \item{(b)} Find the matrix representation of $L$ with respect to the basis 
+                $\left \{ \vec{e}_1, \vec{e}_2 \right \}$ of ${\rm I\!R}^2$ and the standard basis
+                of ${\rm I\!R}^3$, where $\vec{e}_1 = \begin{bmatrix}1\\ 1 \end{bmatrix}$, 
+                $\vec{e}_2 = \begin{bmatrix}0\\ -1 \end{bmatrix}$.\\
+
+        We can say $\vec{x} = C[\vec{x}]_B$ where $B$ is the basis $\left \{ \vec{e}_1, \vec{e}_2 \right \}$ 
+        and $C$ is the matrix formed by using the basis vectors as column vectors, $C = \begin{bmatrix} 1 & 0 \\ 1 & -1 \end{bmatrix}$.\\
+        The transformation we're looking for here maps a vector with respect to the basis $B$ to a vector with respect to the standard basis of ${\rm I\!R}^3$. We can call this transformation $D$.\\
+        Since both $D$ and $L$ map to the same vectors, we know for any $\vec{x}$, $D([\vec{x}]_B)=L(\vec{x})=A\vec{x}=AC[\vec{x}]_B$.\\
+
+        $AC= \begin{bmatrix} 1 & -1 \\ 2 & 0 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ 1 & -1 \end{bmatrix} = 
+        \begin{bmatrix} (1, -1)\cdot(1, 1) & (1, -1)\cdot(0, -1) \\
+                        (2, 0)\cdot(1, 1) & (2, 0)\cdot(0, -1) \\
+                        (1, 0)\cdot(1, 1) & (1, 0)\cdot(0, -1) \end{bmatrix} =
+        \begin{bmatrix} 0 & 1 \\ 2 & 0 \\ 1 & 0 \end{bmatrix}$
+
+    \end{description}
+
+\end{problem}
+
+\end{document}

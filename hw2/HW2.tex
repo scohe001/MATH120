@@ -1,0 +1,192 @@
+%%%
+%%%
+\documentclass[12pt]{extarticle}
+\usepackage{fullpage,latexsym,picinpar,amsmath,amsfonts, amsthm}
+\input{macros.tex}
+
+%\pagestyle{empty}
+
+\usepackage[hidelinks]{hyperref} 
+\usepackage{makeidx}
+\usepackage{enumerate}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}
+\usepackage{mdframed}
+\usepackage{lipsum}
+\usepackage{anyfontsize}
+\everymath{\displaystyle}
+%
+\textwidth 6in
+\oddsidemargin 0.25in
+\evensidemargin 0.25in 
+%
+\title{Math 120 Optimization: Homework 2}
+\author{Stanley Cohen (scohe001)}
+
+\date{}
+%\thanks{}
+%\subjclass{}
+%\renewcommand{\subjclassname}{\textup{2000} Mathematics Subject Classification}
+%\keywords{}
+%\dedicatory{}
+
+%\makeindex
+
+%
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{cor*}{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{examp}[thm]{Example}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{open}[thm]{Open Problem}
+\newtheorem{note}[thm]{Notation}
+\newtheorem{que}[thm]{Question}
+\def\R{{\mathbb{R}}}
+
+
+%
+\newcommand{\actson}{{\curvearrowright}}
+
+
+
+%
+\begin{document}
+
+
+
+\maketitle
+
+\begin{problem}
+	Let $A=\begin{bmatrix}
+	2&2&2\\2&2&2\\2&2&0
+	\end{bmatrix}$. Show that all leading principal minors of A are non-negative, but A is not positive semi-definite. 
+	(Hint: Show that A is not positive semi-definite by computing its eigenvalues.)\\
+
+	The principal minors of $A$ will be $det([2]), det(\begin{bmatrix} 2 & 2\\ 2 & 2 \end{bmatrix}), 
+	det(\begin{bmatrix}2&2&2\\2&2&2\\2&2&0\end{bmatrix})$. To find the last, we can take the determinant with respect to the bottom row:
+
+	$$det(\begin{bmatrix}2&2&2\\2&2&2\\2&2&0\end{bmatrix}) = (2)\cdot det(\begin{bmatrix}2&2\\2&2\end{bmatrix}) 
+	+ (-2)\cdot det(\begin{bmatrix}2&2\\2&2\end{bmatrix}) + (0)\cdot det(\begin{bmatrix}2&2\\2&2\end{bmatrix}) = 0$$
+
+	Since we already have a value that's non-positive, we can say that looking at the leading principal minors will 
+	be inconclusive. Thus (\textit{sigh}) we'll need to look at the eigen values:
+
+	$$det(A-\lambda I_3)=0 \Longrightarrow det(\begin{bmatrix}2-\lambda&2&2\\2&2-\lambda&2\\2&2&0-\lambda\end{bmatrix})={0}$$
+	
+	$$(2)\cdot det(\begin{bmatrix}2&2\\2-\lambda&2\end{bmatrix}) + (-2)\cdot det(\begin{bmatrix}2-\lambda&2\\2&2\end{bmatrix}) + 
+	(-\lambda)\cdot det(\begin{bmatrix}2-\lambda&2\\2&2-\lambda\end{bmatrix}) = 0$$
+
+	$$(2)(4-4+2\lambda)-(2)(4-2\lambda-4)-(\lambda)(4-4\lambda+{\lambda}^2-4)=4\lambda+4\lambda-(\lambda)({\lambda}^2-4\lambda)=0$$
+
+	$$(\lambda)(8+4\lambda-{\lambda}^2) = 0 \Longrightarrow \lambda = 0, 2 \pm 2 \sqrt{3}$$
+
+	Since the Eigen values are both positive and negative, we can say that $A$ is indefinite.
+\end{problem}
+
+\begin{problem}
+Consider the quadratic form 
+$$f(x_1,x_2,x_3)=x_1^2+x_2^2+5x_3^2+2ax_1x_2-2x_1x_3+4x_2x_3=\vec{x}^TQ\vec{x}.$$
+
+	\begin{description}
+		\item{(a)} What is the matrix $Q$?
+
+		Though there are many possible $Q$, we can make the arbitrary choice that $Q=Q^T$ to find a unique $Q$. Thus,
+
+		$$Q=\begin{bmatrix} 1 & 2a & -2\\ 2a & 1 & 4\\ -1 & 4 & 5\end{bmatrix}$$
+
+		\item{(b)} Find the values of the parameter $a$ for which this quadratic form is positive definite.
+
+		$\vec{x}^TQ\vec{x}$ will be positive definite iff all of the leading principal minors are greater than 0. The minors of $Q$ are:
+
+		$$det([1]), det(\begin{bmatrix} 1 & 2a\\ 2a & 1 \end{bmatrix}), det(\begin{bmatrix} 1 & 2a & -2\\ 2a & 1 & 4\\ -1 & 4 & 5\end{bmatrix})$$
+
+		$$det(\begin{bmatrix} 1 & 2a\\ 2a & 1 \end{bmatrix})=1-4a^2 > 0 \Longrightarrow -1/2 < a < 1/2$$
+
+		$$det(\begin{bmatrix} 1 & 2a & -2\\ 2a & 1 & 4\\ -1 & 4 & 5\end{bmatrix}) = (-1)\cdot det(\begin{bmatrix} 2a & -2\\ 1 & 4\end{bmatrix}) + 
+		(-4)\cdot det(\begin{bmatrix} 1 & -2\\ 2a & 4\end{bmatrix}) + (5)\cdot det(\begin{bmatrix} 1 & 2a\\ 2a & 1\end{bmatrix}) = $$
+
+		$$(-1)(8a+2) - (4)(4+4a) + (5)(1-4a^2) = -24a-13-4a^2 > 0 \Longrightarrow 4a^2+24a+13 < 0$$
+
+		$$-3-\sqrt{23}/2 < a < \sqrt{23}/2-3$$
+
+		Since $-1/2 < a < 1/2$ is a tigher bound than $-3-\sqrt{23}/2 < a < \sqrt{23}/2-3$, we know that for $Q$ to be 
+		positive definite, $-1/2 < a < 1/2$.
+	\end{description}
+\end{problem}
+
+\begin{problem}
+	For each of the following quadratic forms, determine if it is positive definite, negative definite, positive semidefinite, negative semidefinite, or indefinite.
+
+	\begin{description}
+		\item{(a)} $f(x_1,x_2,x_3)=x_2^2$
+
+			$f$ will be greater than or equal to $0$ for all non-zero vectors, $\{x_1,x_2,x_3\}$. Thus, $f$ is positive semi-definite.
+
+		\item{(b)} $g(x_1,x_2,x_3)=x_1^2+2x_2^2-x_1x_3$
+
+			If $\vec{x} = \begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}$ and $g = \vec{x}^TQ\vec{x}$, then we can 
+			say $Q = \begin{bmatrix}1 & 0 & -1\\ 0 & 2 & 0 \\ -1 & 0 & 0\end{bmatrix}$. The eigen values of Q can be found from:
+
+			$$det(Q - \lambda I_3) = 0 \Longrightarrow det(\begin{bmatrix}1-\lambda & 0 & -1\\ 0 & 2-\lambda & 0 \\ -1 & 0 & -\lambda\end{bmatrix}) 
+			= (\lambda-2)({\lambda}^2-\lambda-1) = 0$$
+
+			$$\lambda = 2, \frac{1 \pm \sqrt{5}}{2}$$
+
+			Since the eigen values of $Q$ are both positive and negative, $g$ is indefinite. (is this amount of work okay for future problems?)
+
+		\item{(c)} $h(x_1,x_2,x_3)=x_1^2+x_3^2+2x_1x_2+2x_1x_3+2x_2x_3$
+
+			If $\vec{x} = \begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}$ and $h = \vec{x}^TQ\vec{x}$, then we can 
+			say $Q = \begin{bmatrix}1 & 2 & 2\\ 2 & 0 & 2 \\ 2 & 2 & 1\end{bmatrix}$. The eigen values of Q can be found from:
+
+			$$det(Q - \lambda I_3) = 0 \Longrightarrow det(\begin{bmatrix}1-\lambda & 2 & 2\\ 2 & -\lambda & 2 \\ 2 & 2 & 1-\lambda\end{bmatrix}) = 
+			(-\lambda - 1)({\lambda}^2 - 3\lambda - 8) = 0$$
+
+			$$\lambda = -1, \frac{3 \pm \sqrt(41)}{2}$$
+
+			Since the eigen values of $Q$ are both positive and negative, $h$ is indefinite. 
+			(Am I doing these right? I feel like everything's turning up indefinite...)
+
+
+	\end{description}
+\end{problem}
+
+\begin{problem}
+	Is the quadratic form 
+	\[\vec{x}^T \begin{bmatrix}1 & -8\\ 1 & 1 \end{bmatrix}\vec{x}\]
+	positive definite, negative definite, positive semidefinite, negative semidefinite, or indefinite? (Hint: the matrix is not symmetric, so the theorems by using either the leading principal minors or the eigenvalues do not apply. Write down the explicit form of the quadratic form, then plug in some special values for $\vec{x}$.)\\
+
+		If $\vec{x} = \begin{bmatrix}x_1\\x_2\end{bmatrix}$ then 
+
+		$$\vec{x}^T \begin{bmatrix}1 & -8\\ 1 & 1 \end{bmatrix}\vec{x} = 
+		\begin{bmatrix}x_1 & x_2\end{bmatrix}\begin{bmatrix}1 & -8\\ 1 & 1 \end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix} = 
+		\begin{bmatrix} x_1 + x_2 & x_2 - 8x_1\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix} = $$
+		$${x_1}^2 + x_1 x_2 + {x_2}^2 - 8x_1 x_2 = {x_1}^2 + {x_2}^2 - 7x_1 x_2$$
+
+		For $\vec{x} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$, we get $\vec{x}^T \begin{bmatrix}1 & -8\\ 1 & 1 \end{bmatrix}\vec{x} = -5 < 0$ 
+		while if $\vec{x} = \begin{bmatrix} -1 \\ 1 \end{bmatrix}$ we get $\vec{x}^T \begin{bmatrix}1 & -8\\ 1 & 1 \end{bmatrix}\vec{x} = 9 > 0$.\\
+
+		Since we can find non-zero vectors that yield values greater than and less than zero, the quadratic equation is indefinite. (was there really not a single negative/negative semi-definite on this homework??)
+
+\end{problem}
+
+
+\small
+\bibliographystyle{amsalpha}
+\bibliography{ref}
+
+
+\end{document}
+
+
+
+
+
