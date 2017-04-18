@@ -100,25 +100,23 @@ $$f(x_1,x_2,x_3)=x_1^2+x_2^2+5x_3^2+2ax_1x_2-2x_1x_3+4x_2x_3=\vec{x}^TQ\vec{x}.$
 
 		Though there are many possible $Q$, we can make the arbitrary choice that $Q=Q^T$ to find a unique $Q$. Thus,
 
-		$$Q=\begin{bmatrix} 1 & 2a & -2\\ 2a & 1 & 4\\ -1 & 4 & 5\end{bmatrix}$$
+		$$Q=\begin{bmatrix} 1 & 2a & -2\\ 2a & 1 & 4\\ -2 & 4 & 5\end{bmatrix}$$
 
 		\item{(b)} Find the values of the parameter $a$ for which this quadratic form is positive definite.
 
 		$\vec{x}^TQ\vec{x}$ will be positive definite iff all of the leading principal minors are greater than 0. The minors of $Q$ are:
 
-		$$det([1]), det(\begin{bmatrix} 1 & 2a\\ 2a & 1 \end{bmatrix}), det(\begin{bmatrix} 1 & 2a & -2\\ 2a & 1 & 4\\ -1 & 4 & 5\end{bmatrix})$$
+		$$det([1]), det(\begin{bmatrix} 1 & 2a\\ 2a & 1 \end{bmatrix}), det(\begin{bmatrix} 1 & 2a & -2\\ 2a & 1 & 4\\ -2 & 4 & 5\end{bmatrix})$$
 
 		$$det(\begin{bmatrix} 1 & 2a\\ 2a & 1 \end{bmatrix})=1-4a^2 > 0 \Longrightarrow -1/2 < a < 1/2$$
 
-		$$det(\begin{bmatrix} 1 & 2a & -2\\ 2a & 1 & 4\\ -1 & 4 & 5\end{bmatrix}) = (-1)\cdot det(\begin{bmatrix} 2a & -2\\ 1 & 4\end{bmatrix}) + 
+		$$det(\begin{bmatrix} 1 & 2a & -2\\ 2a & 1 & 4\\ -2 & 4 & 5\end{bmatrix}) = (-2)\cdot det(\begin{bmatrix} 2a & -2\\ 1 & 4\end{bmatrix}) + 
 		(-4)\cdot det(\begin{bmatrix} 1 & -2\\ 2a & 4\end{bmatrix}) + (5)\cdot det(\begin{bmatrix} 1 & 2a\\ 2a & 1\end{bmatrix}) = $$
 
-		$$(-1)(8a+2) - (4)(4+4a) + (5)(1-4a^2) = -24a-13-4a^2 > 0 \Longrightarrow 4a^2+24a+13 < 0$$
+		$$(-2)(8a+2) - (4)(4+4a) + (5)(1-4a^2) = -32a-15-20a^2 > 0 \Longrightarrow 20a^2+24a+32 < 0$$
 
-		$$-3-\sqrt{23}/2 < a < \sqrt{23}/2-3$$
+		However, $20a^2+24a+13$ has non-real roots and is always positive, so it can never be less than 0. Therefore there does not exist a real $a$ to make $Q$ positive definite.
 
-		Since $-1/2 < a < 1/2$ is a tigher bound than $-3-\sqrt{23}/2 < a < \sqrt{23}/2-3$, we know that for $Q$ to be 
-		positive definite, $-1/2 < a < 1/2$.
 	\end{description}
 \end{problem}
 
