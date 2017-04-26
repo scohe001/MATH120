@@ -1,0 +1,214 @@
+%%%
+%%%
+\documentclass[12pt]{extarticle}
+\usepackage{fullpage,latexsym,picinpar,amsmath,amsfonts, amsthm, pgfplots}
+\input{macros.tex}
+
+%\pagestyle{empty}
+
+\usepackage[hidelinks]{hyperref} 
+\usepackage{makeidx}
+\usepackage{enumerate}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}
+\usepackage{mdframed}
+\usepackage{lipsum}
+\usepackage{anyfontsize}
+\everymath{\displaystyle}
+%
+\textwidth 6in
+\oddsidemargin 0.25in
+\evensidemargin 0.25in 
+%
+\title{Math 120 Optimization: Homework 3}
+\author{Stanley Cohen}
+%\address{Department of Mathematics, Vanderbilt University, 1326 Stevenson Center, Nashville, TN 37240}
+%\email{chenxu.wen@vanderbilt.edu}
+\date{}
+%\thanks{}
+%\subjclass{}
+%\renewcommand{\subjclassname}{\textup{2000} Mathematics Subject Classification}
+%\keywords{}
+%\dedicatory{}
+
+%\makeindex
+
+%
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{cor*}{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{examp}[thm]{Example}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{open}[thm]{Open Problem}
+\newtheorem{note}[thm]{Notation}
+\newtheorem{que}[thm]{Question}
+\def\R{{\mathbb{R}}}
+
+
+%
+\newcommand{\actson}{{\curvearrowright}}
+
+
+
+%
+\begin{document}
+
+
+
+\maketitle
+
+\begin{problem}
+ Convert the following linear programming problem into \textit{standard form}:
+\begin{align*}
+\text{maximize } &2x_1+x_2\\
+\text{subject to } &0\leq x_1\leq 2\\
+&x_1+x_2\leq 3\\
+&x_1+2x_2\leq 5\\
+&x_2\geq 0.
+\end{align*}
+
+We can add some variables to turn the inequalities into equalities so the problem becomes:
+
+\begin{align*}
+\text{maximize } &2x_1+x_2\\
+\text{subject to } &x_1 + s_1 = 2\\
+&x_1 + x_2 + s_2 = 3\\
+&x_1 + 2x_2 + s_3 = 5\\
+&x_1, x_2, s_1, s_2, s_3 \geq 0.
+\end{align*}
+
+\end{problem}
+
+
+\begin{problem}
+ Suppose that a computer supplier has two warehouses, one located in city A and another in city B. The supplier receives orders from two customers, one in city C and another in city D. The customer in city C orders 50 units, and the customer in city D orders 60 units. The number of units at the warehouse in city A is 70 and the number of units at the warehouse in city B is 80. The cost of shipping each unit from A to C is 1, from A to D is 2, from B to C is 3, from B to D is 4.
+
+
+
+ 	\begin{description}
+		\item{(a)} Formulate the problem of deciding how many units from each warehouse should 
+		be shipped to each customer to minimize the total shipping cost.
+
+			\textit{(Not sure what ``Formulate the problem'' means, but hopefully this will work?)}
+
+			Let $x_y$ be the number of items shipped from warehouse $x$ to city $y$.
+
+			\begin{align*}
+			\text{minimize } &a_c + 2a_d + 3b_c + 4b_d\\
+			\text{subject to } &a_c + a_d \leq 70\\
+			&b_c + b_d \leq 80\\
+			&a_c + b_c = 50\\
+			&a_d + b_d = 60.
+			\end{align*} 
+
+		\item{(b)} Express the problem as an equivalent standard form linear programming problem.
+
+			We can add some variables to turn the inequalities into equalities so the problem becomes:
+			
+			\begin{align*}
+			\text{minimize } &a_c + 2a_d + 3b_c + 4b_d\\
+			\text{subject to } &a_c + a_d + s_1 = 70\\
+			&b_c + b_d + s_2 = 80\\
+			&a_c + b_c = 50\\
+			&a_d + b_d = 60\\
+			&a_c, a_d, b_c, b_d, s_1, s_2 \geq 0.
+			\end{align*} 
+
+
+	\end{description}
+\end{problem}
+
+
+\begin{problem}
+	 A cereal manufacturer wishes to produce 1000 pounds of a cereal that contains exactly 10\% fiber, 2\% fat, and 5\% sugar (by weight). The cereal is to be produced by combining four items of raw food material in appropriate proportions. These four items are named $a, b, c, d$ and they have certain combinations of fiber, fat, and sugar content, and are available at various prices per pound:
+	\begin{center}
+	 \begin{tabular}{||c | c c c c||} 
+	 \hline
+	 Item  & $a$ & $b$ & $c$ & $d$ \\ [0.5ex] 
+	 \hline\hline
+	\% fiber & 3 & 8 & 16 & 4 \\ 
+	 \hline
+	 \% fat & 6 & 46 & 9 & 9 \\
+	 \hline
+	 \% sugar & 20 & 5 & 4 & 0 \\
+	 \hline
+	 Price/lb & 2 & 4 & 1 & 2 \\ [1ex] 
+	 \hline
+	\end{tabular}
+	\end{center}
+	The manufacturer wishes to find the amounts of each item to be used to produce the cereal in the least expensive way. Formulate the problem as a linear programming problem and convert it to the standard form.\\
+
+
+	The problem here becomes:
+
+	\begin{align*}
+	\text{minimize } &2a + 4b + c + 2d\\
+	\text{subject to } &a + b + c + d = 1000\\
+	&3a + 8b + 16c + 4d = 10\cdot 1000\\
+	&6a + 46b + 9c + 9d = 2\cdot 1000\\
+	&20a + 5b + 4c = 5\cdot 1000\\
+	&a, b, c, d \geq 0
+	\end{align*} 
+
+\end{problem}
+
+
+\begin{problem}
+Let the equation 
+\[A\vec{x}=\vec{b},\]
+where $A=\begin{bmatrix}
+1&1&-1&0&4\\0&1&1&-1&0
+\end{bmatrix}$, $\vec{x}=\begin{bmatrix}
+x_1&x_2&x_3&x_4&x_5
+\end{bmatrix}^T$, and $\vec{b}=\begin{bmatrix}
+1&2
+\end{bmatrix}^T$.
+
+\begin{description}
+	\item{(a)} Find a $2\times 2$ matrix B whose columns are from the columns of A and are linearly independent.
+
+		We can choose the first and fourth columns of $A$ to form the 
+		vector $$B = \begin{bmatrix} 1 & 0\\ 0 & -1\end{bmatrix}$$
+
+	\item{(b)} For the basis B you choose from (a), find the solution of the equation 
+	\[B\vec{x}_B=\vec{b},\]
+	where $\vec{x}_B$ is a $2\times 1$ matrix.
+
+	From this equation, we get $$\begin{bmatrix} 1 & 0\\ 0 & -1\end{bmatrix}\vec{x} = \begin{bmatrix} 1\\ 2 \end{bmatrix} 
+	\Longrightarrow \vec{x} = \begin{bmatrix} 1 \\ -2\end{bmatrix}$$
+
+\end{description}
+\end{problem}
+
+
+\begin{problem}
+Solve the following 2 dimensional linear programming problem graphically:
+\begin{align*}
+\text{maximize } &2x_1+5x_2\\
+\text{subject to } &0\leq x_1\leq 4\\
+& 0\leq x_2\leq 6\\
+&x_1+x_2\leq 8.
+\end{align*}
+
+\end{problem}
+
+
+\small
+\bibliographystyle{amsalpha}
+\bibliography{ref}
+
+
+\end{document}
+
+
+
+
+
