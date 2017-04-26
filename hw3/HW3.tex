@@ -2,6 +2,7 @@
 %%%
 \documentclass[12pt]{extarticle}
 \usepackage{fullpage,latexsym,picinpar,amsmath,amsfonts, amsthm, pgfplots}
+\usetikzlibrary{patterns}
 \input{macros.tex}
 
 %\pagestyle{empty}
@@ -55,6 +56,15 @@
 
 %
 \newcommand{\actson}{{\curvearrowright}}
+\newcommand{\pgfplotsdrawaxis}{\pgfplots@draw@axis}
+\makeatother
+\pgfplotsset{only axis on top/.style={axis on top=false, after end axis/.code={
+             \pgfplotsset{axis line style=opaque, ticklabel style=opaque, tick style=opaque,
+                          grid=none}\pgfplotsdrawaxis}}}
+
+\newcommand{\drawge}{-- (rel axis cs:1,0) -- (rel axis cs:1,1) -- (rel axis cs:0,1) \closedcycle}
+\newcommand{\drawle}{-- (rel axis cs:1,1) -- (rel axis cs:1,0) -- (rel axis cs:0,0) \closedcycle}
+
 
 
 
@@ -197,6 +207,32 @@ Solve the following 2 dimensional linear programming problem graphically:
 & 0\leq x_2\leq 6\\
 &x_1+x_2\leq 8.
 \end{align*}
+
+
+  \begin{tikzpicture}
+
+    \draw[gray!50, thin, step=0.5] (0,0) grid (10,10);
+    \draw[very thick,->] (0,0) -- (10,0) node[right] {$x_1$};
+    \draw[very thick,->] (0,0) -- (0,10) node[above] {$x_2$};
+
+    \foreach \x in {0,...,10} \draw (\x,0.05) -- (\x,-0.05) node[below] {\tiny\x};
+    \foreach \y in {0,...,10} \draw (-0.05,\y) -- (0.05,\y) node[right] {\tiny\y};
+
+    \fill[blue!50!cyan,opacity=0.3] (0,0) -- (0,6) -- (2,6) -- (4, 4) -- (4, 0) -- cycle;
+
+    \draw (0, 8) -- node[above,sloped] {\tiny$x_1+x_2\leq8$} (2, 6) -- (8,0);
+    \draw (0, 6) -- (4, 6) -- node[above left,sloped] {\tiny$2x_1-x_2\leq5$} (10, 6);
+    \draw (4, 0) -- (4, 4) -- node[below right,sloped] {\tiny$-x_1+2x_2\leq3$} (4,10);
+    \draw[dotted] (0, 2) -- node[above, sloped] {\tiny$2x_1 + 5x_2 = 10$} (5, 0);
+    \draw[dotted] (0, 4) -- node[above, sloped] {\tiny$2x_1 + 5x_2 = 20$} (10, 0);
+    \draw[dotted] (0, 6) -- (4, 4.4) -- node[above, sloped] {\tiny$2x_1 + 5x_2 = 30$} (10, 2);
+    \draw[dotted] (0, 6.8) -- (4, 5.2) -- node[above, sloped] {\tiny$2x_1 + 5x_2 = 34$} (10, 2.8);
+
+
+\end{tikzpicture}
+
+We can see from the dotted lines I've drawn in for different values of $c$ in\\ $2x_1 + 5x_2 = c$ 
+that the maximum $c$ we will have is the top dotted line when\\ $c = 34, x_1 = 2, x_2 = 6$.
 
 \end{problem}
 
