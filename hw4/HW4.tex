@@ -1,0 +1,155 @@
+%%%
+%%%
+\documentclass[12pt]{extarticle}
+\usepackage{fullpage,latexsym,picinpar,amsmath,amsfonts, amsthm}
+\input{macros.tex}
+
+%\pagestyle{empty}
+
+\usepackage[hidelinks]{hyperref} 
+\usepackage{makeidx}
+\usepackage{enumerate}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}
+\usepackage{mdframed}
+\usepackage{lipsum}
+\usepackage{anyfontsize}
+\everymath{\displaystyle}
+%
+\textwidth 6in
+\oddsidemargin 0.25in
+\evensidemargin 0.25in 
+%
+\title{Math 120 Optimization: Homework 4}
+\author{Stanley Cohen (scohe001)}
+%\address{Department of Mathematics, Vanderbilt University, 1326 Stevenson Center, Nashville, TN 37240}
+%\email{chenxu.wen@vanderbilt.edu}
+\date{}
+%\thanks{}
+%\subjclass{}
+%\renewcommand{\subjclassname}{\textup{2000} Mathematics Subject Classification}
+%\keywords{}
+%\dedicatory{}
+
+%\makeindex
+
+%
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{cor*}{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{examp}[thm]{Example}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{open}[thm]{Open Problem}
+\newtheorem{note}[thm]{Notation}
+\newtheorem{que}[thm]{Question}
+\def\R{{\mathbb{R}}}
+
+
+%
+\newcommand{\actson}{{\curvearrowright}}
+
+
+
+%
+\begin{document}
+
+
+
+\maketitle
+
+\begin{problem} Consider the system of equations 
+
+	\[\begin{bmatrix}
+	2&-1&2&-1&3\\1&2&3&1&0\\1&0&-2&0&-5
+	\end{bmatrix}\begin{bmatrix}
+	x_1\\x_2\\x_3\\x_4\\x_5
+	\end{bmatrix}=\begin{bmatrix}
+	14\\5\\-10
+	\end{bmatrix}.\]
+	Find one basic solution. State explicitly which basis you are using.
+
+\end{problem}
+
+\begin{problem} Consider the system of equations 
+
+	\[\begin{bmatrix}
+	2&1&-1&0\\1&3&1&3
+	\end{bmatrix}\begin{bmatrix}
+	x_1\\x_2\\x_3\\x_4
+	\end{bmatrix}=\begin{bmatrix}
+	3\\5
+	\end{bmatrix}.\]
+	Find all basic solutions. 
+
+\end{problem}
+
+\begin{problem} Solve the linear programming problem:
+
+	\begin{align*}
+	\text{minimize } \quad &x_1-x_3\\
+	\text{subject to} \quad & \begin{bmatrix}
+	2&1&-1&0\\1&3&1&3
+	\end{bmatrix}\begin{bmatrix}
+	x_1\\x_2\\x_3\\x_4
+	\end{bmatrix}=\begin{bmatrix}
+	3\\5
+	\end{bmatrix}\\
+	& \vec{x}\geq \vec{0}.
+	\end{align*}
+	You may use the result from the previous problem.
+
+\end{problem}
+
+\begin{problem} Prove that any subspace $V$ of $\R^n$ is a convex set.
+
+\end{problem}
+
+\begin{problem} Consider the system of equations 
+
+	\[\begin{bmatrix}
+	2&-1&2&-1&3\\1&2&3&1&0\\1&0&-2&0&-5
+	\end{bmatrix}\begin{bmatrix}
+	x_1\\x_2\\x_3\\x_4\\x_5
+	\end{bmatrix}=\begin{bmatrix}
+	14\\5\\-10
+	\end{bmatrix}.\]
+	Write down the augmented matrix of the system and convert it to the canonical form using elementary row operations. State explicitly which basis your canonical form is with respect to.
+
+\end{problem}
+
+\begin{problem} Consider the system of equations 
+
+	\[\begin{bmatrix}
+	1&1&1&0&1\\
+	0&2&0&0&2\\
+	3&4&0&1&1\\
+	0&0&0&1&-1
+	\end{bmatrix}\begin{bmatrix}
+	x_1\\x_2\\x_3\\x_4\\x_5
+	\end{bmatrix}=\begin{bmatrix}
+	0\\2\\0\\0
+	\end{bmatrix}.\]
+	Write down the augmented matrix of the system and convert it to the canonical form using elementary row operations(Hint: the first 4 columns are linearly independent). 
+
+\end{problem}
+
+
+\small
+\bibliographystyle{amsalpha}
+\bibliography{ref}
+
+
+\end{document}
+
+
+
+
+
