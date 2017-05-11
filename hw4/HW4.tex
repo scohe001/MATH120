@@ -56,6 +56,13 @@
 %
 \newcommand{\actson}{{\curvearrowright}}
 
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
 
 
 %
@@ -74,7 +81,17 @@
 	\end{bmatrix}=\begin{bmatrix}
 	14\\5\\-10
 	\end{bmatrix}.\]
-	Find one basic solution. State explicitly which basis you are using.
+	Find one basic solution. State explicitly which basis you are using.\\
+
+	$det(\begin{bmatrix}2&-1&2\\1&2&3\\1&0&-2\end{bmatrix}) = -17 \neq 0$, 
+		so these three columns are linearly independent. We will use these as the basis for our basic solution.\\
+
+	$\begin{bmatrix}[ccc|c]2&-1&2&14\\1&2&3&5\\1&0&-2&-10\end{bmatrix}$ reduces to $\begin{bmatrix}[ccc|c]1&0&0&-4/17\\0&1&0&-80/17\\0&0&1&83/17\end{bmatrix}$, so our basic solution is
+	$$\begin{bmatrix}
+	x_1\\x_2\\x_3\\x_4\\x_5
+	\end{bmatrix} = \begin{bmatrix}
+	-4/17\\-80/17\\83/17\\0\\0
+	\end{bmatrix}$$
 
 \end{problem}
 
@@ -87,7 +104,31 @@
 	\end{bmatrix}=\begin{bmatrix}
 	3\\5
 	\end{bmatrix}.\]
-	Find all basic solutions. 
+	Find all basic solutions. (\textit{bruh.})\\
+
+	All of the column vectors are linearly independent (\textit{yay}) so we're going to have ${{4}\choose{2}} = 6$ possible basic solutions. 
+		In no particular order, these will be\\
+
+	\begin{enumerate}
+	\item $$\begin{bmatrix}[cc|c] 2&1&3\\1&3&5 \end{bmatrix} \Longrightarrow 
+		\begin{bmatrix}[cc|c] 1&0&4/5\\0&1&7/5 \end{bmatrix} \Longrightarrow
+		\begin{bmatrix} x_1\\x_2\\x_3\\x_4\\x_5 \end{bmatrix} = \begin{bmatrix} 4/5\\7/5\\0\\0\end{bmatrix}$$ 
+	\item $$\begin{bmatrix}[cc|c] 2&-1&3\\1&1&5 \end{bmatrix} \Longrightarrow
+		\begin{bmatrix}[cc|c] 1&0&8/3\\0&1&7/3 \end{bmatrix} \Longrightarrow
+		\begin{bmatrix} x_1\\x_2\\x_3\\x_4\\x_5 \end{bmatrix} = \begin{bmatrix} 8/3\\0\\7/3\\0\end{bmatrix}$$
+	\item $$\begin{bmatrix}[cc|c] 2&0&3\\1&3&5 \end{bmatrix} \Longrightarrow
+		\begin{bmatrix}[cc|c] 1&0&3/2\\0&1&7/6 \end{bmatrix} \Longrightarrow
+		\begin{bmatrix} x_1\\x_2\\x_3\\x_4\\x_5 \end{bmatrix} = \begin{bmatrix} 3/2\\0\\0\\7/6\end{bmatrix}$$
+	\item $$\begin{bmatrix}[cc|c] 1&-1&3\\3&1&5 \end{bmatrix} \Longrightarrow
+		\begin{bmatrix}[cc|c] 1&0&2\\0&1&-1 \end{bmatrix} \Longrightarrow
+		\begin{bmatrix} x_1\\x_2\\x_3\\x_4\\x_5 \end{bmatrix} = \begin{bmatrix} 0\\2\\-1\\0\end{bmatrix}$$
+	\item $$\begin{bmatrix}[cc|c] 1&0&3\\3&3&5 \end{bmatrix} \Longrightarrow
+		\begin{bmatrix}[cc|c] 1&0&3\\0&1&-4/3 \end{bmatrix} \Longrightarrow
+		\begin{bmatrix} x_1\\x_2\\x_3\\x_4\\x_5 \end{bmatrix} = \begin{bmatrix} 0\\3\\0\\-4/3\end{bmatrix}$$
+	\item $$\begin{bmatrix}[cc|c] -1&0&3\\1&3&5 \end{bmatrix} \Longrightarrow
+		\begin{bmatrix}[cc|c] 1&0&-3\\0&1&8/3 \end{bmatrix} \Longrightarrow
+		\begin{bmatrix} x_1\\x_2\\x_3\\x_4\\x_5 \end{bmatrix} = \begin{bmatrix} 0\\0\\-3\\8/3\end{bmatrix}$$
+	\end{enumerate}
 
 \end{problem}
 
@@ -104,11 +145,41 @@
 	\end{bmatrix}\\
 	& \vec{x}\geq \vec{0}.
 	\end{align*}
-	You may use the result from the previous problem.
+	You may use the result from the previous problem.\\
+
+	From the previous problem, solutions 4, 5, 6 are all infeasible, so we only need to check 1-3. Plugging our values from our basic solutions into the function we're attempting to minimize will yield:
+
+	$$\begin{bmatrix} x_1\\x_2\\x_3\\x_4\\x_5 \end{bmatrix} = \begin{bmatrix} 4/5\\7/5\\0\\0\end{bmatrix} \Longrightarrow
+		4/5 - 0 = 4/5$$
+
+	$$\begin{bmatrix} x_1\\x_2\\x_3\\x_4\\x_5 \end{bmatrix} = \begin{bmatrix} 8/3\\0\\7/3\\0\end{bmatrix} \Longrightarrow
+		8/3 - 7/3 = 1/3$$
+
+	$$\begin{bmatrix} x_1\\x_2\\x_3\\x_4\\x_5 \end{bmatrix} = \begin{bmatrix} 3/2\\0\\0\\7/6\end{bmatrix} \Longrightarrow
+		3/2 - 0 = 3/2$$
+
+	Our optimal minimum value will be $1/3$ when $[x_1,x_2,x_3,x_4,x_5] = [8/3, 0, 7/3, 0]$.
 
 \end{problem}
 
-\begin{problem} Prove that any subspace $V$ of $\R^n$ is a convex set.
+\begin{problem} Prove that any subspace $V$ of $\R^n$ is a convex set.\\
+
+\begin{enumerate}
+
+\item Assume we have some subspace, $V$.
+\item By definition, $V$ is closed under addition of two vectors within $V$ and under scalar multiplication.
+\item By definition, $V$ is convex iff $\forall \vec{u}, \vec{v} \in V, \alpha\vec{u} + (1-\alpha)\vec{v} \in V$
+\item Assume we have some vectors, $\vec{u}, \vec{v} \in V$.
+\item Define $\vec{u'} = \alpha\vec{u}, \vec{v'}$ = $(1-\alpha)\vec{v}$.
+\item By 2, $\vec{u'}, \vec{v'} \in V$ since $V$ is closed under scalar multiplication.
+\item By 2, $\vec{u'} + \vec{v'} \in V$ since $V$ is closed under vector addition.
+\item That is, $\alpha\vec{u} + (1-\alpha)\vec{v} \in V$.
+\item By 4-8, for any vectors $\vec{u}, \vec{v} \in V$, $\alpha\vec{u} + (1-\alpha)\vec{v} \in V$.
+\item That is, $V$ is convex.
+\smallskip
+\item By 1-10, for any subspace $V$, $V$ is convex.
+
+\end{enumerate}
 
 \end{problem}
 
@@ -121,7 +192,17 @@
 	\end{bmatrix}=\begin{bmatrix}
 	14\\5\\-10
 	\end{bmatrix}.\]
-	Write down the augmented matrix of the system and convert it to the canonical form using elementary row operations. State explicitly which basis your canonical form is with respect to.
+	Write down the augmented matrix of the system and convert it to the canonical form using elementary row operations. State explicitly which basis your canonical form is with respect to.\\
+
+	Augmented matrix will be: 
+	$\begin{bmatrix}[ccccc|c]
+	2&-1&2&-1&3&14\\1&2&3&1&0&5\\1&0&-2&0&-5&-10
+	\end{bmatrix}$\\
+
+	Row reducing to put it into canonical form with respect to the basis of the first three column vectors will yield: 
+	$$\begin{bmatrix}[ccccc|c]
+	1&0&0&-2/17&-23/17&-4/17\\0&1&0&11/17&-35/17&-80/17\\0&0&1&-1/17&31/17&83/17
+	\end{bmatrix}$$
 
 \end{problem}
 
@@ -137,7 +218,28 @@
 	\end{bmatrix}=\begin{bmatrix}
 	0\\2\\0\\0
 	\end{bmatrix}.\]
-	Write down the augmented matrix of the system and convert it to the canonical form using elementary row operations(Hint: the first 4 columns are linearly independent). 
+	Write down the augmented matrix of the system and convert it to the canonical form using elementary row operations(Hint: the first 4 columns are linearly independent).\\
+
+	Augmented matrix will be:
+	$\begin{bmatrix}[ccccc|c]
+	1&1&1&0&1&0\\
+	0&2&0&0&2&2\\
+	3&4&0&1&1&0\\
+	0&0&0&1&-1&0
+	\end{bmatrix}$\\
+
+	Row reducing to put it into canonical form with respect to the basis of the first three column vectors will yield:
+	$$\begin{bmatrix}[ccccc|c]
+	1&0&0&0&-2/3&-4/3\\
+	0&1&0&0&1&1\\
+	0&0&1&0&2/3&1/3\\
+	0&0&0&1&-1&0
+	\end{bmatrix}$$
+
+	% (1 | 0 | 0 | 0 | -2/3 | -4/3
+	% 0 | 1 | 0 | 0 | 1 | 1
+	% 0 | 0 | 1 | 0 | 2/3 | 1/3
+	% 0 | 0 | 0 | 1 | -1 | 0)
 
 \end{problem}
 
