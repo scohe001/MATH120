@@ -1,0 +1,226 @@
+%%%
+%%%
+\documentclass[12pt]{extarticle}
+\usepackage{fullpage,latexsym,picinpar,amsmath,amsfonts, amsthm}
+\input{macros.tex}
+
+%\pagestyle{empty}
+
+\usepackage[hidelinks]{hyperref} 
+\usepackage{makeidx}
+\usepackage{enumerate}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}
+\usepackage{mdframed}
+\usepackage{lipsum}
+\usepackage{anyfontsize}
+\everymath{\displaystyle}
+%
+\textwidth 6in
+\oddsidemargin 0.25in
+\evensidemargin 0.25in 
+%
+\title{Math 120 Optimization: Homework 5}
+\author{Stanley Cohen (scohe001)}
+%\address{Department of Mathematics, Vanderbilt University, 1326 Stevenson Center, Nashville, TN 37240}
+%\email{chenxu.wen@vanderbilt.edu}
+\date{}
+%\thanks{}
+%\subjclass{}
+%\renewcommand{\subjclassname}{\textup{2000} Mathematics Subject Classification}
+%\keywords{}
+%\dedicatory{}
+
+%\makeindex
+
+%
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{cor*}{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{examp}[thm]{Example}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{open}[thm]{Open Problem}
+\newtheorem{note}[thm]{Notation}
+\newtheorem{que}[thm]{Question}
+\def\R{{\mathbb{R}}}
+
+
+%
+\newcommand{\actson}{{\curvearrowright}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+
+
+%
+\begin{document}
+
+
+
+\maketitle
+
+
+Solve the following linear programming problems using the matrix form (i.e. the tableau) of simplex method.
+
+\begin{problem}
+
+	\begin{align*}
+	\text{maximize } &2x_1+x_2\\
+	\text{subject to } &x_1\leq 2\\
+	&x_1+x_2\leq 3\\
+	&x_1+2x_2\leq 5\\
+	&x_1, x_2\geq 0.
+	\end{align*}
+
+	Putting this into standard form will make it look like:
+
+	\begin{align*}
+	\text{minimize } &-2x_1-x_2\\
+	\text{subject to } &x_1 + s_1 = 2\\
+	&x_1+x_2+s_2 = 3\\
+	&x_1+2x_2+s_3 = 5\\
+	&x_1, x_2, s_1, s_2, s_3 \geq 0.
+	\end{align*}
+
+	Given this LP, the initial tableau will look like:
+
+	$$\begin{bmatrix}[ccccc|c] 1&0&1&0&0&2\\1&1&0&1&0&3\\1&2&0&0&1&5\\-2&-1&0&0&0&0\end{bmatrix}$$
+
+	We'll column 1 look like column 3 to get:
+
+	$$\begin{bmatrix}[ccccc|c] 1&0&1&0&0&2\\0&1&-1&1&0&1\\0&2&-1&0&1&3\\0&-1&2&0&0&4\end{bmatrix}$$
+
+	Next we'll make column 2 look like column 4 to get:
+
+	$$\begin{bmatrix}[ccccc|c] 1&0&1&0&0&2\\0&1&-1&1&0&1\\0&0&1&-2&1&1\\0&0&1&1&0&5\end{bmatrix}$$
+
+	So we get an optimal value of 5 when $(x_1,x_2)=(2,1)$.
+
+
+\end{problem}
+
+\begin{problem} 
+
+	\begin{align*}
+	\text{maximize } &6x_1+4x_2+7x_3+5x_4\\
+	\text{subject to } &x_1+2x_2+x_3+2x_4\leq 20\\
+	&6x_1+5x_2+3x_3+2x_4\leq 100\\
+	&3x_1+4x_2+9x_3+12x_4\leq 75\\
+	&x_1, x_2, x_3, x_4\geq 0.
+	\end{align*}
+
+	Puttin this into standard form will make it look like:
+
+	\begin{align*}
+	\text{minimize } &-6x_1-4x_2-7x_3-5x_4\\
+	\text{subject to } &x_1+2x_2+x_3+2x_4+s_1 = 20\\
+	&6x_1+5x_2+3x_3+2x_4+s_2 = 100\\
+	&3x_1+4x_2+9x_3+12x_4+s_3 = 75\\
+	&x_1, x_2, x_3, x_4, s_1, s_2, s_3\geq 0.
+	\end{align*}
+
+	Given this LP, the inital tableau will look like:
+
+	$$\begin{bmatrix}[ccccccc|c] 1&2&1&2&1&0&0&20\\ 6&5&3&2&0&1&0&100\\ 3&4&9&12&0&0&1&75\\ -6&-4&-7&-5&0&0&0&0 \end{bmatrix}$$
+
+	First we'll make column 3 look like column 7:
+
+	$$\begin{bmatrix}[ccccccc|c] 2/3&14/9&0&2/3&1&0&-1/9&35/3\\ 5&11/3&0&-2&0&1&-1/3&75\\ 
+		1/3&4/9&1&4/3&0&0&1/9&25/3\\ -11/3&-8/9&0&13/3&0&0&7/9&175/3 \end{bmatrix}$$
+
+	Next we'll make column 1 look like column 6:
+
+	$$\begin{bmatrix}[ccccccc|c] 0&16/15&0&14/15&1&-2/15&-1/15&5/3\\ 1&11/15&0&-2/5&0&1/5&-1/15&25\\ 
+		0&1/5&1&22/15&0&-1/15&2/15&10/3\\ 0&9/5&0&11/5&0&11/15&8/15&340/3 \end{bmatrix}$$
+
+	So we get an optimal value of 340/3 when $(x_1,x_2,x_3,x_4)=(15,0,10/3,0)$.
+
+
+\end{problem}
+
+\begin{problem} 
+
+	\begin{align*}
+	\text{minimize } &x_1+x_2-x_3\\
+	\text{subject to } &2x_1+x_2+x_3\leq 14\\
+	&4x_1+2x_2+3x_3\leq 28\\
+	&2x_1+5x_2+5x_3\leq 30\\
+	&x_1, x_2, x_3\geq 0.
+	\end{align*}
+
+	Puttin this into standard form will make it look like:
+
+	\begin{align*}
+	\text{minimize } &x_1+x_2-x_3\\
+	\text{subject to } &2x_1+x_2+x_3+s_1 = 14\\
+	&4x_1+2x_2+3x_3+s_2 = 28\\
+	&2x_1+5x_2+5x_3+s_3 = 30\\
+	&x_1, x_2, x_3, s_1, s_2, s_3\geq 0.
+	\end{align*}
+
+	Given this LP, the inital tableau will look like:
+
+	$$\begin{bmatrix}[cccccc|c] 2&1&1&1&0&0&14\\ 4&2&3&0&1&0&28\\ 2&5&5&0&0&1&30\\ 1&1&-1&0&0&0&0 \end{bmatrix}$$
+
+	First we'll make column 3 look like column 6:
+
+	$$\begin{bmatrix}[cccccc|c] 8/5&0&0&1&0&-1/5&8\\ 14/5&-1&0&0&1&-3/5&4\\ 2/5&1&1&0&0&1/5&6\\ 7/5&2&0&0&0&1/5&6 \end{bmatrix}$$
+
+	So we get an optimal value of -6 when $(x_1,x_2,x_3)=(0,0,6)$.
+
+
+\end{problem}
+
+\begin{problem} 
+
+	\begin{align*}
+	\text{maximize } &2x_1+4x_2+3x_3+x_4\\
+	\text{subject to } &3x_1+x_2+x_3+4x_4\leq 12\\
+	&x_1-3x_2+2x_3+3x_4\leq 7\\
+	&2x_1+x_2+3x_3-x_4\leq 10\\
+	&x_1, x_2, x_3, x_4\geq 0.
+	\end{align*}
+
+	Puttin this into standard form will make it look like:
+
+	\begin{align*}
+	\text{minimize } &-2x_1-4x_2-3x_3-x_4\\
+	\text{subject to } &3x_1+x_2+x_3+4x_4+s_1 = 12\\
+	&x_1-3x_2+2x_3+3x_4+s_2 = 7\\
+	&2x_1+x_2+3x_3-x_4+s_3 = 10\\
+	&x_1, x_2, x_3, x_4, s_1, s_2, s_3\geq 0.
+	\end{align*}
+
+	Given this LP, the inital tableau will look like:
+
+	$$\begin{bmatrix}[ccccccc|c] 3&1&1&4&1&0&0&12\\ 1&-3&2&3&0&1&0&7\\ 2&1&3&-1&0&0&1&10\\ -2&-4&-3&-1&0&0&0&0 \end{bmatrix}$$
+
+
+
+\end{problem}
+
+
+\small
+\bibliographystyle{amsalpha}
+\bibliography{ref}
+
+
+\end{document}
+
+
+
+
+
