@@ -1,0 +1,144 @@
+%%%
+%%%
+\documentclass[12pt]{extarticle}
+\usepackage{fullpage,latexsym,picinpar,amsmath,amsfonts, amsthm}
+\input{macros.tex}
+
+%\pagestyle{empty}
+
+\usepackage[hidelinks]{hyperref} 
+\usepackage{makeidx}
+\usepackage{enumerate}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}
+\usepackage{mdframed}
+\usepackage{lipsum}
+\usepackage{anyfontsize}
+\everymath{\displaystyle}
+%
+\textwidth 6in
+\oddsidemargin 0.25in
+\evensidemargin 0.25in 
+%
+\title{Math 120 Optimization: Homework 6}
+\author{Stanley Cohen (scohe001)}
+%\address{Department of Mathematics, Vanderbilt University, 1326 Stevenson Center, Nashville, TN 37240}
+%\email{chenxu.wen@vanderbilt.edu}
+\date{}
+%\thanks{}
+%\subjclass{}
+%\renewcommand{\subjclassname}{\textup{2000} Mathematics Subject Classification}
+%\keywords{}
+%\dedicatory{}
+
+%\makeindex
+
+%
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{cor*}{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{examp}[thm]{Example}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{open}[thm]{Open Problem}
+\newtheorem{note}[thm]{Notation}
+\newtheorem{que}[thm]{Question}
+\def\R{{\mathbb{R}}}
+
+
+%
+\newcommand{\actson}{{\curvearrowright}}
+
+
+
+%
+\begin{document}
+
+
+
+\maketitle
+
+\begin{problem} Consider the following linear programming problem
+
+  	\begin{align*}
+	\text{minimize } &-x_1+2x_2-x_3\\
+	\text{subject to } & x_1+3x_2+x_4=4\\
+	&2x_1+6x_2+x_3+x_4=5\\
+	&x_1,x_2,x_3,x_4\geq 0.
+	\end{align*}
+
+	\begin{description}
+		\item{(a)} Form the associated artificial problem and carry out the Phase I in the Two-Phase Simplex Method.\\
+		\item{(b)} From the final tableau for Phase I, find the initial canonical tableau for phase II (you don't need to solve the original problem).
+	\end{description}
+
+\end{problem}
+
+\begin{problem} Consider the following linear programming problem
+
+  	\begin{align*}
+	\text{minimize } &-2x-3y-4z\\
+	\text{subject to } & 3x+2y+z=10\\
+	&2x+5y+3z=15\\
+	&x,y,z\geq 0.
+	\end{align*}
+
+	\begin{description}
+		\item{(a)} Form the associated artificial problem and carry out the Phase I in the Two-Phase Simplex Method.\\
+		\item{(b)} From the final tableau for Phase I, find the initial canonical tableau for phase II (you don't need to solve the original problem).
+	\end{description}
+
+\end{problem}
+
+\begin{problem} Consider a standard form linear programming problem with 
+
+	\[A=\begin{bmatrix}
+	0&2&0&1\\1&1&0&0\\0&3&1&0
+	\end{bmatrix},\vec{b}=\begin{bmatrix}
+	7\\8\\9
+	\end{bmatrix},\vec{c}=\begin{bmatrix}
+	6\\c_2\\4\\5
+	\end{bmatrix}.\]
+
+	Suppose that we are told that the reduced cost coefficient vector corresponding to some basis is $\vec{r}^T=[0,1,0,0]$.\\
+
+	\begin{description}
+		\item{(a)} Find an optimal feasible solution to the problem;\\
+		\item{(b)} Find $c_2$.
+	\end{description}
+
+\end{problem}
+
+\begin{problem} Consider the linear program
+
+ \begin{align*}
+\text{minimize } &4x_1+3x_2\\
+\text{subject to } & 5x_1+x_2\geq 11\\
+&2x_1+x_2\geq 8\\
+&x_1+2x_2\geq 7\\
+&x_1,x_2\geq 0.
+\end{align*}
+
+Write down the corresponding dual problem.
+
+\end{problem}
+
+
+\small
+\bibliographystyle{amsalpha}
+\bibliography{ref}
+
+
+\end{document}
+
+
+
+
+
